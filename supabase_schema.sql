@@ -91,6 +91,7 @@ create table if not exists notes (
   user_id uuid references profiles(id) on delete cascade not null,
   title text not null,
   content text,
+  attachment_url text,
   is_pinned boolean default false,
   is_archived boolean default false,
   visibility text check (visibility in ('private', 'shared')) default 'private' not null,
@@ -488,3 +489,29 @@ DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+-- ==========================================
+-- STORAGE BUCKETS & POLICIES
+-- ==========================================
+
+-- Create note_attachments bucket if it doesn't exist
+insert into storage.buckets (id, name, public)
+values ('note_attachments', 'note_attachments', true)
+on conflict (id) do nothing;
+
+-- RLS for storage
+create policy "Anyone can view note attachments"
+  on storage.objects for select
+  using ( bucket_id = 'note_attachments' );
+
+create policy "Authenticated users can upload note attachments"
+  on storage.objects for insert
+  with check ( bucket_id = 'note_attachments' and auth.role() = 'authenticated' );
+
+create policy "Users can update their own note attachments"
+  on storage.objects for update
+  using ( bucket_id = 'note_attachments' and auth.uid() = owner );
+
+create policy "Users can delete their own note attachments"
+  on storage.objects for delete
+  using ( bucket_id = 'note_attachments' and auth.uid() = owner );

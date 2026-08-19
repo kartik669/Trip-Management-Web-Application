@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
-import { Plus, BookOpen, Lock, Globe, Pin, Trash2 } from 'lucide-react';
+import { Plus, BookOpen, Lock, Globe, Pin, Trash2, FileText } from 'lucide-react';
 import { format } from 'date-fns';
 import AddNoteModal from '../components/notes/AddNoteModal';
 
@@ -12,6 +12,7 @@ interface Note {
   content: string;
   is_pinned: boolean;
   visibility: string;
+  attachment_url?: string;
   created_at: string;
   user_id: string;
   profiles: {
@@ -127,7 +128,32 @@ const Notes: React.FC = () => {
                   )}
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2 pr-6">{note.title}</h3>
-                <p className="text-sm text-gray-700 whitespace-pre-wrap">{note.content}</p>
+                {note.content && (
+                  <p className="text-sm text-gray-700 whitespace-pre-wrap">{note.content}</p>
+                )}
+                {note.attachment_url && (
+                  <div className="mt-4 pt-4 border-t border-yellow-200/50">
+                    {note.attachment_url.match(/\.(jpeg|jpg|gif|png|webp|svg)(\?.*)?$/i) != null ? (
+                      <a href={note.attachment_url} target="_blank" rel="noopener noreferrer" className="block hover:opacity-90 transition-opacity">
+                        <img 
+                          src={note.attachment_url} 
+                          alt="Attachment" 
+                          className="rounded-lg max-h-48 object-cover w-full bg-white shadow-sm ring-1 ring-gray-900/5" 
+                        />
+                      </a>
+                    ) : (
+                      <a 
+                        href={note.attachment_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-700 bg-blue-50/80 rounded-lg hover:bg-blue-100 transition-colors w-full ring-1 ring-blue-700/10"
+                      >
+                        <FileText className="h-4 w-4 text-blue-500" />
+                        <span className="truncate flex-1 text-left">View Attached File</span>
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="px-5 py-3 bg-yellow-100/50 border-t border-yellow-200/50 flex items-center justify-between">
                 <span className="text-xs text-gray-500">By {note.user_id === user?.id ? 'You' : note.profiles?.full_name}</span>
