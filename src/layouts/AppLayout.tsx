@@ -146,11 +146,11 @@ const AppLayout: React.FC = () => {
             <span className="sr-only">Open sidebar</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex flex-1 justify-between items-center font-semibold text-gray-900 dark:text-gray-100">
-             <span className="truncate max-w-[150px] sm:max-w-[200px]">{tripName}</span>
-             <div className="flex items-center gap-3">
+          <div className="flex flex-1 justify-between items-center font-semibold text-gray-900 dark:text-gray-100 min-w-0">
+             <span className="truncate mr-2 flex-1">{tripName}</span>
+             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                <ThemeToggle />
-               <button onClick={() => navigate('/dashboard')} className="text-sm text-blue-600 dark:text-blue-400">
+               <button onClick={() => navigate('/dashboard')} className="text-sm text-blue-600 dark:text-blue-400 whitespace-nowrap">
                   All Trips
                </button>
              </div>

@@ -44,12 +44,12 @@ const Trips: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200 p-6">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Your Trips</h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">Select a trip to view its dashboard.</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <ThemeToggle />
             <button
               onClick={async () => {
