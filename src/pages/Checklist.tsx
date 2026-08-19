@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
-import { Plus, CheckSquare, Square, Check, Trash2, Globe, Lock } from 'lucide-react';
+import { Plus, CheckSquare, Check, Trash2, Globe, Lock } from 'lucide-react';
 import AddChecklistModal from '../components/checklist/AddChecklistModal';
 
 interface ChecklistItem {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
-import { UserPlus, Shield, User, MapPin } from 'lucide-react';
+import { UserPlus, Shield, User } from 'lucide-react';
 import InviteMemberModal from '../components/members/InviteMemberModal';
 import { format } from 'date-fns';
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { CreditCard, Users, Map, Plus } from 'lucide-react';
+import { CreditCard, Users, Map } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();

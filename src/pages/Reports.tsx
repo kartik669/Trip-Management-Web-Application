@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { BarChart3, TrendingUp, PieChart, Wallet } from 'lucide-react';
+import { BarChart3, PieChart, Wallet } from 'lucide-react';
 
 const CATEGORY_COLORS: Record<string, string> = {
   Food: 'bg-orange-500',
