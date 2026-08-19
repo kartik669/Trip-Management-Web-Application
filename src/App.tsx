@@ -3,7 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import AppLayout from './layouts/AppLayout';
 import Login from './pages/Login';
-import Register from './pages/Register';
+
 import Trips from './pages/Trips';
 import Dashboard from './pages/Dashboard';
 import Expenses from './pages/Expenses';
@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+
           
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Trips />} />
