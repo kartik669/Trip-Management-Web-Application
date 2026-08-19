@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
+import ThemeToggle from '../components/ThemeToggle';
 
 const AppLayout: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,16 +47,16 @@ const AppLayout: React.FC = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
       {/* Mobile sidebar */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-gray-900/80" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white">
+          <div className="fixed inset-y-0 left-0 flex w-64 flex-col bg-white dark:bg-gray-900 transition-colors duration-200">
             <div className="flex h-16 shrink-0 items-center px-6">
-              <span className="text-xl font-bold text-blue-600">Trip Buddy</span>
+              <span className="text-xl font-bold text-blue-600 dark:text-blue-500">Trip Buddy</span>
               <button 
-                className="ml-auto text-gray-500" 
+                className="ml-auto text-gray-500 dark:text-gray-400" 
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <X className="h-6 w-6" />
@@ -72,8 +73,8 @@ const AppLayout: React.FC = () => {
                         onClick={() => setMobileMenuOpen(false)}
                         className={`group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 ${
                           isActive
-                            ? 'bg-blue-50 text-blue-600'
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                            ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400'
                         }`}
                       >
                         <item.icon className="h-5 w-5 shrink-0" />
@@ -89,15 +90,16 @@ const AppLayout: React.FC = () => {
       )}
 
       {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 lg:bg-white lg:pb-4">
-        <div className="flex h-16 shrink-0 items-center px-6">
-          <span className="text-xl font-bold text-blue-600">Trip Buddy</span>
+      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 dark:lg:border-gray-800 lg:bg-white dark:lg:bg-gray-900 transition-colors duration-200 lg:pb-4">
+        <div className="flex h-16 shrink-0 items-center justify-between px-6">
+          <span className="text-xl font-bold text-blue-600 dark:text-blue-500">Trip Buddy</span>
+          <ThemeToggle />
         </div>
-        <div className="px-6 py-2 border-b border-gray-100">
-           <button onClick={() => navigate('/dashboard')} className="flex items-center text-sm text-gray-500 hover:text-gray-900 mb-2">
+        <div className="px-6 py-2 border-b border-gray-100 dark:border-gray-800">
+           <button onClick={() => navigate('/dashboard')} className="flex items-center text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-2 transition-colors">
              <ArrowLeft className="w-4 h-4 mr-1" /> All Trips
            </button>
-           <h2 className="font-semibold text-gray-900 truncate" title={tripName}>{tripName}</h2>
+           <h2 className="font-semibold text-gray-900 dark:text-gray-100 truncate" title={tripName}>{tripName}</h2>
         </div>
         <nav className="mt-4 flex flex-1 flex-col px-6">
           <ul className="flex flex-1 flex-col gap-y-2">
@@ -107,10 +109,10 @@ const AppLayout: React.FC = () => {
                 <li key={item.name}>
                   <Link
                     to={item.href}
-                    className={`group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 ${
+                    className={`group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-colors ${
                       isActive
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                        ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400'
                     }`}
                   >
                     <item.icon className="h-5 w-5 shrink-0" />
@@ -123,9 +125,9 @@ const AppLayout: React.FC = () => {
         </nav>
         
         {/* User profile section at bottom */}
-        <div className="mt-auto px-6 pt-4 border-t border-gray-200">
-           <div className="flex items-center gap-x-3 py-2 text-sm font-semibold leading-6 text-gray-900">
-              <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+        <div className="mt-auto px-6 pt-4 border-t border-gray-200 dark:border-gray-800">
+           <div className="flex items-center gap-x-3 py-2 text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
+              <div className="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400">
                 {user?.email?.charAt(0).toUpperCase()}
               </div>
               <span className="truncate">{user?.email}</span>
@@ -135,20 +137,23 @@ const AppLayout: React.FC = () => {
 
       {/* Main content */}
       <div className="flex flex-1 flex-col lg:pl-64">
-        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:hidden">
+        <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:hidden transition-colors duration-200">
           <button
             type="button"
-            className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+            className="-m-2.5 p-2.5 text-gray-700 dark:text-gray-300 lg:hidden"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
-          <div className="flex flex-1 justify-between items-center font-semibold text-gray-900">
-             <span className="truncate max-w-[200px]">{tripName}</span>
-             <button onClick={() => navigate('/dashboard')} className="text-sm text-blue-600">
-                All Trips
-             </button>
+          <div className="flex flex-1 justify-between items-center font-semibold text-gray-900 dark:text-gray-100">
+             <span className="truncate max-w-[150px] sm:max-w-[200px]">{tripName}</span>
+             <div className="flex items-center gap-3">
+               <ThemeToggle />
+               <button onClick={() => navigate('/dashboard')} className="text-sm text-blue-600 dark:text-blue-400">
+                  All Trips
+               </button>
+             </div>
           </div>
         </div>
 
@@ -157,7 +162,7 @@ const AppLayout: React.FC = () => {
         </main>
         
         {/* Mobile bottom navigation */}
-        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 bg-white lg:hidden">
+        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 transition-colors duration-200 lg:hidden">
            <div className="flex h-16 items-center justify-around px-2">
               {[
                 navigation[0], // Home
@@ -170,7 +175,7 @@ const AppLayout: React.FC = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`flex flex-col items-center justify-center space-y-1 ${isActive ? 'text-blue-600' : 'text-gray-500'}`}
+                    className={`flex flex-col items-center justify-center space-y-1 transition-colors ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'}`}
                   >
                     <item.icon className="h-6 w-6" />
                     <span className="text-[10px] font-medium">{item.name}</span>
