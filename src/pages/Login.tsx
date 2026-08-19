@@ -26,7 +26,7 @@ const Login: React.FC = () => {
     
     // Create deterministic email and password from name
     const normalizedName = name.trim().toLowerCase().replace(/\s+/g, '');
-    const email = `${normalizedName}@tripapp.local`;
+    const email = `${normalizedName}@dummy.example.com`;
     const password = `tripapp_${normalizedName}_123!`;
     
     try {
