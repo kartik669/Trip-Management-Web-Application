@@ -90,7 +90,7 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onClick={handleClose} />
       
-      <div className="relative w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+      <div className="relative w-full max-w-lg transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-xl font-bold leading-6 text-gray-900 flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-blue-600" />
