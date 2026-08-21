@@ -90,15 +90,15 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onClick={handleClose} />
       
-      <div className="relative w-full max-w-lg transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-lg transform rounded-2xl bg-white dark:bg-gray-800 p-6 text-left align-middle shadow-xl transition-all max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-bold leading-6 text-gray-900 flex items-center gap-2">
+          <h3 className="text-xl font-bold leading-6 text-gray-900 dark:text-gray-100 flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-blue-600" />
             Add Note
           </h3>
           <button
             onClick={handleClose}
-            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600"
           >
             <X className="h-5 w-5" />
           </button>
@@ -112,7 +112,7 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
               Title
             </label>
             <div className="mt-1">
@@ -121,14 +121,14 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="e.g., Ideas for Paris"
               />
             </div>
           </div>
           
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
               Content
             </label>
             <div className="mt-1">
@@ -136,35 +136,35 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
                 rows={6}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="Jot down some ideas, addresses, or travel tips..."
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900 mb-2">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100 mb-2">
               Visibility
             </label>
             <div className="grid grid-cols-2 gap-3">
               <div 
                 onClick={() => setVisibility('private')}
-                className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${visibility === 'private' ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white hover:bg-gray-50'}`}
+                className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${visibility === 'private' ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
               >
-                <Lock className={`h-5 w-5 ${visibility === 'private' ? 'text-blue-600' : 'text-gray-500'}`} />
+                <Lock className={`h-5 w-5 ${visibility === 'private' ? 'text-blue-600' : 'text-gray-500 dark:text-gray-400'}`} />
                 <div>
-                  <p className={`text-sm font-semibold ${visibility === 'private' ? 'text-blue-900' : 'text-gray-900'}`}>Private</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Only you can see this.</p>
+                  <p className={`text-sm font-semibold ${visibility === 'private' ? 'text-blue-900' : 'text-gray-900 dark:text-gray-100'}`}>Private</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Only you can see this.</p>
                 </div>
               </div>
               <div 
                 onClick={() => setVisibility('shared')}
-                className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${visibility === 'shared' ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white hover:bg-gray-50'}`}
+                className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${visibility === 'shared' ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
               >
-                <Globe className={`h-5 w-5 ${visibility === 'shared' ? 'text-blue-600' : 'text-gray-500'}`} />
+                <Globe className={`h-5 w-5 ${visibility === 'shared' ? 'text-blue-600' : 'text-gray-500 dark:text-gray-400'}`} />
                 <div>
-                  <p className={`text-sm font-semibold ${visibility === 'shared' ? 'text-blue-900' : 'text-gray-900'}`}>Shared</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Everyone in the trip can read this.</p>
+                  <p className={`text-sm font-semibold ${visibility === 'shared' ? 'text-blue-900' : 'text-gray-900 dark:text-gray-100'}`}>Shared</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Everyone in the trip can read this.</p>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
                 />
               </label>
               {file && (
-                <span className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[200px]">
+                <span className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 truncate max-w-[200px]">
                   {file.name}
                 </span>
               )}
@@ -197,7 +197,7 @@ const AddNoteModal: React.FC<AddNoteModalProps> = ({ isOpen, onClose, tripId, on
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="rounded-md bg-white dark:bg-gray-800 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               Cancel
             </button>

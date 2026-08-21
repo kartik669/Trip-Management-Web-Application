@@ -95,13 +95,13 @@ const InviteMemberModal: React.FC<InviteMemberModalProps> = ({ isOpen, onClose, 
       
       <div className="relative w-full max-w-md transform rounded-2xl bg-white dark:bg-gray-900 p-6 text-left align-middle shadow-xl transition-all max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-bold leading-6 text-gray-900 flex items-center gap-2">
+          <h3 className="text-xl font-bold leading-6 text-gray-900 dark:text-gray-100 flex items-center gap-2">
             <UserPlus className="h-5 w-5 text-blue-600" />
             Add Member
           </h3>
           <button
             onClick={handleClose}
-            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600"
           >
             <X className="h-5 w-5" />
           </button>
@@ -121,20 +121,20 @@ const InviteMemberModal: React.FC<InviteMemberModalProps> = ({ isOpen, onClose, 
 
         <form onSubmit={handleSearchAndAdd} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
               Search by Username or Name
             </label>
-            <p className="text-xs text-gray-500 mb-2">They must have an account on Trip Buddy first.</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">They must have an account on Trip Buddy first.</p>
             <div className="relative mt-1 rounded-md shadow-sm">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <Search className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                <Search className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" aria-hidden="true" />
               </div>
               <input
                 type="text"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full rounded-md border-0 py-2.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2.5 pl-10 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="e.g., kartik or John Doe"
               />
             </div>
@@ -144,7 +144,7 @@ const InviteMemberModal: React.FC<InviteMemberModalProps> = ({ isOpen, onClose, 
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="rounded-md bg-white dark:bg-gray-800 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               Cancel
             </button>

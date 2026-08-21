@@ -127,7 +127,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
           </h3>
           <button
             onClick={handleClose}
-            className="rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           >
             <X className="h-5 w-5" />
           </button>
@@ -143,7 +143,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
           <div className="flex items-center gap-4">
             <div className="flex-1">
               <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
-                <User className="h-4 w-4 text-gray-400" />
+                <User className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" />
                 Who paid?
               </label>
               <div className="mt-1">
@@ -164,13 +164,13 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
               </div>
             </div>
             
-            <div className="mt-6 text-gray-400">
+            <div className="mt-6 text-gray-400 dark:text-gray-500 dark:text-gray-400">
               <ArrowRightLeft className="h-5 w-5" />
             </div>
 
             <div className="flex-1">
               <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
-                <Users className="h-4 w-4 text-gray-400" />
+                <Users className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" />
                 Paid to?
               </label>
               <div className="mt-1">
@@ -196,7 +196,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
             </label>
             <div className="relative mt-1">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <span className="text-gray-500 sm:text-sm">₹</span>
+                <span className="text-gray-500 dark:text-gray-400 sm:text-sm">₹</span>
               </div>
               <input
                 type="number"
@@ -205,7 +205,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
                 min="0.01"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 pl-7 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 pr-3"
+                className="block w-full rounded-md border-0 py-2 pl-7 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 pr-3"
                 placeholder="0.00"
               />
             </div>
@@ -227,7 +227,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
                 />
               </label>
               {file && (
-                <span className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[150px]">
+                <span className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 dark:text-gray-400 truncate max-w-[150px]">
                   {file.name}
                 </span>
               )}

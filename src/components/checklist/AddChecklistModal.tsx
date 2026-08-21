@@ -73,7 +73,7 @@ const AddChecklistModal: React.FC<AddChecklistModalProps> = ({ isOpen, onClose, 
           </h3>
           <button
             onClick={handleClose}
-            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 dark:text-gray-500 hover:text-gray-600"
+            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600"
           >
             <X className="h-5 w-5" />
           </button>
@@ -96,7 +96,7 @@ const AddChecklistModal: React.FC<AddChecklistModalProps> = ({ isOpen, onClose, 
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="e.g., Don't forget passports!"
               />
             </div>
@@ -111,20 +111,20 @@ const AddChecklistModal: React.FC<AddChecklistModalProps> = ({ isOpen, onClose, 
                 onClick={() => setIsShared(false)}
                 className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${!isShared ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
               >
-                <Lock className={`h-5 w-5 ${!isShared ? 'text-blue-600' : 'text-gray-500'}`} />
+                <Lock className={`h-5 w-5 ${!isShared ? 'text-blue-600' : 'text-gray-500 dark:text-gray-400'}`} />
                 <div>
                   <p className={`text-sm font-semibold ${!isShared ? 'text-blue-900' : 'text-gray-900 dark:text-gray-100'}`}>Personal</p>
-                  <p className="text-xs text-gray-500 mt-0.5">My to-do list</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">My to-do list</p>
                 </div>
               </div>
               <div 
                 onClick={() => setIsShared(true)}
                 className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${isShared ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600' : 'border-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
               >
-                <Globe className={`h-5 w-5 ${isShared ? 'text-blue-600' : 'text-gray-500'}`} />
+                <Globe className={`h-5 w-5 ${isShared ? 'text-blue-600' : 'text-gray-500 dark:text-gray-400'}`} />
                 <div>
                   <p className={`text-sm font-semibold ${isShared ? 'text-blue-900' : 'text-gray-900 dark:text-gray-100'}`}>Group</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Group task</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Group task</p>
                 </div>
               </div>
             </div>

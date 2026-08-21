@@ -93,13 +93,13 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
       
       <div className="relative w-full max-w-lg transform rounded-2xl bg-white dark:bg-gray-900 p-6 text-left align-middle shadow-xl transition-all max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-bold leading-6 text-gray-900 flex items-center gap-2">
+          <h3 className="text-xl font-bold leading-6 text-gray-900 dark:text-gray-100 flex items-center gap-2">
             <Calendar className="h-5 w-5 text-blue-600" />
             Add Itinerary Event
           </h3>
           <button
             onClick={handleClose}
-            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+            className="rounded-full p-1 hover:bg-gray-100 transition-colors text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600"
           >
             <X className="h-5 w-5" />
           </button>
@@ -113,7 +113,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
               Event Title
             </label>
             <div className="mt-1">
@@ -122,7 +122,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="e.g., Eiffel Tower Tour"
               />
             </div>
@@ -130,8 +130,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900">
-                <MapPin className="h-4 w-4 text-gray-400" />
+              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
+                <MapPin className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" />
                 Location (Optional)
               </label>
               <div className="mt-1">
@@ -139,21 +139,21 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   placeholder="e.g., Champ de Mars"
                 />
               </div>
             </div>
             <div>
-              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900">
-                <Tag className="h-4 w-4 text-gray-400" />
+              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
+                <Tag className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" />
                 Category
               </label>
               <div className="mt-1">
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 bg-white"
+                  className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 bg-white dark:bg-gray-800"
                 >
                   {CATEGORIES.map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
@@ -165,8 +165,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900">
-                <Clock className="h-4 w-4 text-gray-400" />
+              <label className="flex items-center gap-1 text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
+                <Clock className="h-4 w-4 text-gray-400 dark:text-gray-500 dark:text-gray-400" />
                 Start Date
               </label>
               <input
@@ -174,11 +174,11 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 required
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="mt-1 block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">
+              <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
                 Start Time
               </label>
               <input
@@ -186,14 +186,14 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 required
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
-                className="mt-1 block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">
+              <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
                 End Date
               </label>
               <input
@@ -201,11 +201,11 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 required
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="mt-1 block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">
+              <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
                 End Time
               </label>
               <input
@@ -213,13 +213,13 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 required
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
-                className="mt-1 block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
           
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
               Notes / Description (Optional)
             </label>
             <div className="mt-1">
@@ -227,7 +227,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
                 rows={3}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 dark:bg-gray-800 py-2 px-3 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 dark:text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                 placeholder="Confirmation numbers, meeting points, etc."
               />
             </div>
@@ -237,7 +237,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ isOpen, onClose, tripId, 
             <button
               type="button"
               onClick={handleClose}
-              className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="rounded-md bg-white dark:bg-gray-800 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               Cancel
             </button>

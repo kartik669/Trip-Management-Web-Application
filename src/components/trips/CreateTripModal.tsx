@@ -79,7 +79,7 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({ isOpen, onClose, onTr
       <div className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-gray-900 p-6 shadow-xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">Create New Trip</h2>
-          <button onClick={onClose} className="text-gray-400 dark:text-gray-500 hover:text-gray-600">
+          <button onClick={onClose} className="text-gray-400 dark:text-gray-500 dark:text-gray-400 hover:text-gray-600">
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -90,40 +90,40 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({ isOpen, onClose, onTr
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Trip Name</label>
             <input type="text" name="name" required value={formData.name} onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
+              className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
               placeholder="e.g. Hyderabad Trip 2026" />
           </div>
           
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Destination</label>
             <input type="text" name="destination" required value={formData.destination} onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+              className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Start Date</label>
               <input type="date" name="startDate" required value={formData.startDate} onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
             </div>
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">End Date</label>
               <input type="date" name="endDate" required value={formData.endDate} onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+                className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
             </div>
           </div>
 
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Budget (Optional)</label>
             <input type="number" name="budget" value={formData.budget} onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
+              className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
               placeholder="e.g. 50000" />
           </div>
           
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">Description</label>
             <textarea name="description" rows={3} value={formData.description} onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
+              className="mt-1 block w-full rounded-md border-0 dark:bg-gray-800 py-1.5 px-3 text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" />
           </div>
 
           <div className="mt-6 flex justify-end gap-3">
