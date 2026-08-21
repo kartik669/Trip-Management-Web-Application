@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
-import { X, ArrowRightLeft, User, Users } from 'lucide-react';
+import { X, ArrowRightLeft, User, Users, Paperclip, Loader2 } from 'lucide-react';
 
 interface AddSettlementModalProps {
   isOpen: boolean;
@@ -18,6 +18,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
   const [amount, setAmount] = useState('');
   const [payerId, setPayerId] = useState(user?.id || '');
   const [receiverId, setReceiverId] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [members, setMembers] = useState<{ id: string; user_id: string; profiles: { full_name: string } }[]>([]);
 
   useEffect(() => {
@@ -63,6 +64,26 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
     }
 
     try {
+      let receipt_url = null;
+
+      if (file) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${crypto.randomUUID()}.${fileExt}`;
+        const filePath = `${tripId}/${fileName}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('receipts')
+          .upload(filePath, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('receipts')
+          .getPublicUrl(filePath);
+          
+        receipt_url = publicUrl;
+      }
+
       const { error: settlementError } = await supabase
         .from('settlements')
         .insert({
@@ -71,6 +92,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
           receiver_id: receiverId,
           amount: parseFloat(amount),
           status: 'paid',
+          receipt_url,
           paid_at: new Date().toISOString()
         });
 
@@ -88,6 +110,7 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
 
   const handleClose = () => {
     setAmount('');
+    setFile(null);
     setError(null);
     onClose();
   };
@@ -188,6 +211,29 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
             </div>
           </div>
 
+          <div>
+            <label className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
+              Receipt / Screenshot (Optional)
+            </label>
+            <div className="mt-1 flex items-center gap-3">
+              <label className="flex cursor-pointer items-center gap-2 rounded-md bg-white dark:bg-gray-800 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <Paperclip className="h-4 w-4" />
+                <span>{file ? 'Change file' : 'Attach screenshot'}</span>
+                <input
+                  type="file"
+                  className="sr-only"
+                  onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+                  accept="image/*,.pdf"
+                />
+              </label>
+              {file && (
+                <span className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[150px]">
+                  {file.name}
+                </span>
+              )}
+            </div>
+          </div>
+
           <div className="mt-6 flex justify-end gap-3">
             <button
               type="button"
@@ -199,8 +245,9 @@ const AddSettlementModal: React.FC<AddSettlementModalProps> = ({ isOpen, onClose
             <button
               type="submit"
               disabled={loading}
-              className="rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-50"
             >
+              {loading && <Loader2 className="h-4 w-4 animate-spin" />}
               {loading ? 'Saving...' : 'Record Payment'}
             </button>
           </div>

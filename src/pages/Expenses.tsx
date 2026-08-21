@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { Plus, Receipt, Utensils, Home, Car, Plane, ShoppingBag, Coffee, Ticket, Trash2, ArrowRightLeft } from 'lucide-react';
+import { Plus, Receipt, Utensils, Home, Car, Plane, ShoppingBag, Coffee, Ticket, Trash2, ArrowRightLeft, Paperclip } from 'lucide-react';
 import { format } from 'date-fns';
 import AddExpenseModal from '../components/expenses/AddExpenseModal';
 import AddSettlementModal from '../components/expenses/AddSettlementModal';
@@ -15,6 +15,7 @@ interface Transaction {
   category: string;
   paid_by: string;
   paid_to?: string;
+  receipt_url?: string;
   raw?: any;
 }
 
@@ -95,6 +96,7 @@ const Expenses: React.FC = () => {
         category: 'Settlement',
         paid_by: s.payer?.full_name || 'Unknown',
         paid_to: s.receiver?.full_name || 'Unknown',
+        receipt_url: s.receipt_url,
         raw: s
       }))];
     }
@@ -208,6 +210,17 @@ const Expenses: React.FC = () => {
                     <p className={`text-base font-bold ${transaction.type === 'settlement' ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-900 dark:text-gray-100'}`}>
                       ₹{Number(transaction.amount).toFixed(2)}
                     </p>
+                    {transaction.receipt_url && (
+                      <a 
+                        href={transaction.receipt_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-500 mt-1"
+                      >
+                        <Paperclip className="h-3 w-3" />
+                        Receipt
+                      </a>
+                    )}
                   </div>
                   <button
                     onClick={() => deleteTransaction(transaction.id, transaction.type)}

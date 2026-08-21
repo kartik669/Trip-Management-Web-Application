@@ -80,6 +80,7 @@ create table if not exists settlements (
   receiver_id uuid references profiles(id) on delete cascade not null,
   amount numeric(12, 2) not null,
   status text check (status in ('pending', 'paid', 'cancelled')) default 'pending' not null,
+  receipt_url text,
   paid_at timestamp with time zone,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -515,3 +516,25 @@ create policy "Users can update their own note attachments"
 create policy "Users can delete their own note attachments"
   on storage.objects for delete
   using ( bucket_id = 'note_attachments' and auth.uid() = owner );
+
+-- Create receipts bucket if it doesn't exist
+insert into storage.buckets (id, name, public)
+values ('receipts', 'receipts', true)
+on conflict (id) do nothing;
+
+-- RLS for receipts storage
+create policy "Anyone can view receipts"
+  on storage.objects for select
+  using ( bucket_id = 'receipts' );
+
+create policy "Authenticated users can upload receipts"
+  on storage.objects for insert
+  with check ( bucket_id = 'receipts' and auth.role() = 'authenticated' );
+
+create policy "Users can update their own receipts"
+  on storage.objects for update
+  using ( bucket_id = 'receipts' and auth.uid() = owner );
+
+create policy "Users can delete their own receipts"
+  on storage.objects for delete
+  using ( bucket_id = 'receipts' and auth.uid() = owner );
