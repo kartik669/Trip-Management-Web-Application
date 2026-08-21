@@ -85,7 +85,7 @@ const Itinerary: React.FC = () => {
     <div className="p-6 max-w-5xl mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Trip Itinerary</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Trip Itinerary</h1>
           <p className="text-sm text-gray-500 mt-1">Plan your perfect schedule.</p>
         </div>
         <button

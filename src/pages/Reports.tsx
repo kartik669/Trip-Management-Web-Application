@@ -89,7 +89,7 @@ const Reports: React.FC = () => {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Analytics & Reports</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Analytics & Reports</h1>
         <p className="text-sm text-gray-500 mt-1">Track your spending and budget.</p>
       </div>
 

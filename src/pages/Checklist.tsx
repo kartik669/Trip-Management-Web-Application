@@ -121,7 +121,7 @@ const Checklist: React.FC = () => {
     <div className="p-6 max-w-4xl mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Packing & To-Do List</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Packing & To-Do List</h1>
           <p className="text-sm text-gray-500 mt-1">Keep track of what you need for the trip.</p>
         </div>
         <button
